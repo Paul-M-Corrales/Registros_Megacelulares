@@ -1027,9 +1027,9 @@
         // CONFIGURACIÓN — completar con los datos de tu proyecto Supabase
         // Supabase → Project Settings → API → Project URL / anon public key
         // ============================================================
-        const SUPABASE_URL = "https://qhajprsxbnudcmdlkrex.supabase.co";
-        const SUPABASE_ANON_KEY =
-          "sb_publishable_3kVe-YEXLBnGv0cnKJS2dw_nrYFOlG1";
+        const SUPABASE_URL = "PEGAR_AQUI_TU_SUPABASE_URL";
+        const SUPABASE_ANON_KEY = "PEGAR_AQUI_TU_SUPABASE_ANON_KEY";
+
         if (!SUPABASE_URL || SUPABASE_URL.indexOf("PEGAR_AQUI") === 0) {
           document.getElementById("configWarning").innerHTML =
             '<div class="config-warning"><b>Falta configurar Supabase.</b><br><br>' +
@@ -1356,6 +1356,7 @@
             '<button class="btn print" id="printBtn">Imprimir orden (2 copias) 🖨</button>' +
             '<button class="btn whatsapp" id="sendWaBtn">Enviar por WhatsApp ↗</button>' +
             '<button class="btn ghost" id="copyBtn">Copiar mensaje</button>' +
+            '<button class="btn ghost" id="newOrderBtn">+ Cargar otra orden</button>' +
             "</div>";
 
           $("printBtn").addEventListener("click", function () {
@@ -1379,7 +1380,44 @@
               }, 1500);
             } catch (e) {}
           });
+          $("newOrderBtn").addEventListener("click", function () {
+            resetForm();
+          });
           area.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function resetForm() {
+          [
+            "clientName",
+            "dni",
+            "clientPhone",
+            "clientWhatsapp",
+            "brand",
+            "model",
+            "workRequested",
+            "equipmentState",
+            "imei",
+            "serial",
+            "pin",
+            "monto",
+            "senia",
+            "dueDate",
+          ].forEach(function (id) {
+            const el = $(id);
+            if (el) el.value = "";
+          });
+          ["typePresupuesto", "typeReparacion", "typeDiagnostico"].forEach(
+            function (id) {
+              $(id).checked = false;
+            },
+          );
+          selectedClientId = null;
+          $("clientLoadedBadge").classList.remove("show");
+          $("clientSuggestions").classList.remove("open");
+          $("ticketArea").innerHTML =
+            '<div class="empty">Completá los datos y generá la orden<br>para ver el ticket acá.</div>';
+          $("clientName").focus();
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         // ---------- print ----------
