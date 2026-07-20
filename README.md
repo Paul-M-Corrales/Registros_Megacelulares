@@ -46,7 +46,7 @@ Abrir `index.html` y completar, cerca del final del archivo (dentro del `<script
 
 ```js
 const SUPABASE_URL = "https://xxxxxxxx.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOi...";
+const SUPABASE_ANON_KEY = "ey.........";
 ```
 
 > La `anon key` es pública por diseño (viaja en el HTML del cliente), la protección real está en las políticas RLS de `schema.sql`, que exigen `auth.role() = 'authenticated'` para leer o escribir cualquier fila.
@@ -95,3 +95,5 @@ const SUPABASE_ANON_KEY = "eyJhbGciOi...";
 - El plan gratuito de Supabase pausa el proyecto luego de 7 días sin actividad (se reactiva solo, tarda unos segundos). No debería ser un problema con uso diario del local.
 - No hay backup automático propio más allá de lo que ofrece Supabase en el plan gratuito — considerar exportar la tabla `repairs`/`clients` periódicamente si el volumen de datos crece.
 - El texto legal de la orden (plazo de 60 días, cláusula de equipos mojados, etc.) fue provisto por el cliente a partir de una plantilla que ya usaban; no fue revisado por un abogado. Se recomienda una revisión legal antes de un uso a gran escala.
+
+## Desarrollado por Paúl Matías Corrales
